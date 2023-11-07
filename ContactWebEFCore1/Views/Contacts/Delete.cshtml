@@ -11,83 +11,175 @@
     <h4>Contact</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.FirstName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.LastName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Email)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Email)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PhonePrimary)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PhonePrimary)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PhoneSecondary)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PhoneSecondary)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Birthday)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Birthday)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.StreetAddress1)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StreetAddress1)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.StreetAddress2)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StreetAddress2)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.City)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.City)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.State)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.State.Abbreviation)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Zip)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Zip)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.UserId)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.UserId)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+
+
+/*
+La syntaxe Razor est utilisée dans les fichiers de vue (.cshtml) pour combiner du code C# avec du HTML et générer du contenu dynamique. Voici une explication des balises "@", ainsi qu'une analyse du code que vous avez fourni :
+
+1. `@model ContactWebModels.Contact` : Cette directive indique que la vue est fortement typée avec le modèle `ContactWebModels.Contact`. Cela signifie que vous pourrez accéder aux propriétés de ce modèle dans la vue.
+
+2. `@{ ViewData["Title"] = "Delete"; }` : Cela déclare un bloc de code C# entre les accolades. À l'intérieur de ce bloc, vous définissez la valeur de ViewData["Title"] comme "Delete". ViewData est un dictionnaire qui permet de stocker des données que vous souhaitez utiliser dans la vue. Ici, vous définissez le titre de la page.
+
+3. `<h1>Delete</h1>` : Ceci est simplement du HTML pour afficher un titre "Delete" de niveau 1.
+
+4. `<h3>Are you sure you want to delete this?</h3>` : Encore du HTML pour afficher un sous-titre.
+
+5. Le bloc `<div>
+    ` contient les détails du contact que vous souhaitez supprimer. Les balises `@Html.DisplayNameFor(model => model.FirstName)` et `@Html.DisplayFor(model => model.FirstName)` sont utilisées pour afficher le nom de la propriété "FirstName" du modèle `Contact`.
+
+    - `@Html.DisplayNameFor(model => model.FirstName)` : Cette balise affiche l'étiquette (label) associée à la propriété "FirstName". L'étiquette est généralement basée sur les attributs de l'objet, tels que `[Display(Name = "First Name")]`.
+    - `@Html.DisplayFor(model => model.FirstName)` : Cette balise affiche la valeur de la propriété "FirstName" du modèle `Contact`.
+
+    6. Le code se répète pour toutes les propriétés du modèle, affichant l'étiquette et la valeur correspondantes.
+
+    7. `<form asp-action="Delete">
+    ` : Ceci est un formulaire HTML qui utilise une action "Delete" lorsque le formulaire est soumis. L'attribut `asp-action` spécifie quelle action du contrôleur sera appelée lorsque le formulaire est soumis.
+
+    8. `<input type="hidden" asp-for="Id" />` : Cette balise génère un champ de formulaire masqué (hidden) pour la propriété "Id" du modèle. Cela permet de transmettre l'identifiant du contact à supprimer lorsque le formulaire est soumis. La balise `asp-for` est utilisée pour lier ce champ à la propriété "Id" du modèle.
+
+    9. `<input type="submit" value="Delete" class="btn btn-danger" />` : Ceci est un bouton de soumission de formulaire avec le texte "Delete" et une classe CSS pour styliser le bouton.
+
+    10. `<a asp-action="Index">Back to List</a>` : C'est un lien HTML qui utilise l'action "Index" pour revenir à la liste des contacts.
+
+    La syntaxe Razor permet d'incorporer du code C# dans des fichiers de vue ASP.NET Core de manière propre et lisible. Elle facilite la génération de contenu HTML dynamique en utilisant des modèles de données. Les balises "@" indiquent à Razor d'interpréter le code C# à l'intérieur et de générer le HTML correspondant.
+    et de générer le HTML correspondant.
+    */
+
+
+    /*
+
+    1. **Modèle MVC (Modèle-Vue-Contrôleur) :** MVC est une architecture de conception couramment utilisée dans le développement web. Elle divise une application web en trois composants principaux : le modèle (Model), la vue (View), et le contrôleur (Controller).
+
+    - **Modèle (Model) :** Représente les données et la logique métier de l'application.
+    - **Vue (View) :** Affiche les données au format HTML et gère l'interface utilisateur.
+    - **Contrôleur (Controller) :** Gère les requêtes HTTP, interagit avec le modèle, et renvoie les vues appropriées.
+
+    2. **Razor :** Razor est un langage de modèle de vue utilisé avec ASP.NET Core pour générer du contenu HTML dynamique. Il permet d'incorporer du code C# dans des fichiers de vue (.cshtml) pour générer des pages web dynamiques.
+
+    Maintenant, regardons votre exemple et expliquons la syntaxe Razor dans le contexte d'une vue :
+
+    ```csharp
+    @model ContactWebModels.Contact
+    ```
+
+    - `@model ContactWebModels.Contact` : Cette ligne déclare le modèle de la vue. Elle indique que la vue est fortement typée avec le modèle `ContactWebModels.Contact`. Cela signifie que vous pouvez accéder aux propriétés de ce modèle dans la vue.
+
+    ```csharp
+    @{
+        ViewData["Title"] = "Delete";
+    }
+    ```
+
+    - `@{ ... }` : C'est un bloc de code C#. Vous pouvez y placer des instructions C# pour effectuer des opérations ou des affectations de données. Dans cet exemple, vous définissez la valeur de la clé "Title" dans ViewData.
+
+    ```html
+    <h1>Delete</h1>
+    ```
+
+    - `<h1>Delete</h1>` : Ceci est du HTML pur. Il affiche un titre "Delete" de niveau 1 sur la page.
+
+    ```html
+    <h3>Are you sure you want to delete this?</h3>
+    ```
+
+    - `<h3>Are you sure you want to delete this?</h3>` : Encore du HTML pour afficher un sous-titre.
+
+    Le code que vous avez fourni continue de cette manière, en mélangeant du code C# (encadré par `@{ ... }`) et du HTML. Voici comment cela fonctionne :
+
+    - `@Html.DisplayNameFor(model => model.FirstName)` : Cette balise Razor génère l'étiquette (label) de la propriété "FirstName" du modèle. Elle est basée sur les attributs du modèle, comme `[Display(Name = "First Name")]`.
+
+    - `@Html.DisplayFor(model => model.FirstName)` : Cette balise génère la valeur de la propriété "FirstName" du modèle.
+
+    - Les autres balises `@Html.DisplayNameFor` et `@Html.DisplayFor` fonctionnent de la même manière pour les autres propriétés du modèle.
+
+    - `<form asp-action="Delete">
+        ` : Ceci est un formulaire HTML qui sera soumis à l'action "Delete" du contrôleur lorsque le formulaire est soumis.
+
+        - `<input type="hidden" asp-for="Id" />` : Cette balise génère un champ de formulaire masqué (hidden) pour la propriété "Id" du modèle. Cela permet de transmettre l'identifiant du contact à supprimer lorsque le formulaire est soumis.
+
+        - `<input type="submit" value="Delete" class="btn btn-danger" />` : Ceci est un bouton de soumission de formulaire avec le texte "Delete" et une classe CSS pour styliser le bouton.
+
+        - `<a asp-action="Index">Back to List</a>` : C'est un lien HTML qui utilise l'action "Index" pour revenir à la liste des contacts.
+
+        En résumé, Razor est une syntaxe qui permet d'incorporer du code C# dans des fichiers de vue pour générer du contenu HTML dynamique en fonction des données du modèle. Elle facilite la création de pages web interactives dans le cadre de l'architecture MVC.
+

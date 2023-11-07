@@ -12,65 +12,91 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Champ pour le prénom (FirstName) -->
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
+
+            <!-- Champ pour le nom de famille (LastName) -->
             <div class="form-group">
                 <label asp-for="LastName" class="control-label"></label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
+
+            <!-- Champ pour l'adresse e-mail (Email) -->
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+
+            <!-- Champ pour le numéro de téléphone principal (PhonePrimary) -->
             <div class="form-group">
                 <label asp-for="PhonePrimary" class="control-label"></label>
                 <input asp-for="PhonePrimary" class="form-control" />
                 <span asp-validation-for="PhonePrimary" class="text-danger"></span>
             </div>
+
+            <!-- Champ pour le numéro de téléphone secondaire (PhoneSecondary) -->
             <div class="form-group">
                 <label asp-for="PhoneSecondary" class="control-label"></label>
                 <input asp-for="PhoneSecondary" class="form-control" />
                 <span asp-validation-for="PhoneSecondary" class="text-danger"></span>
             </div>
+
+            <!-- Champ pour la date de naissance (Birthday) -->
             <div class="form-group">
                 <label asp-for="Birthday" class="control-label"></label>
                 <input asp-for="Birthday" class="form-control" />
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
+
+            <!-- Champ pour la première ligne de l'adresse (StreetAddress1) -->
             <div class="form-group">
                 <label asp-for="StreetAddress1" class="control-label"></label>
                 <input asp-for="StreetAddress1" class="form-control" />
                 <span asp-validation-for="StreetAddress1" class="text-danger"></span>
             </div>
+
+            <!-- Champ pour la deuxième ligne de l'adresse (StreetAddress2) -->
             <div class="form-group">
                 <label asp-for="StreetAddress2" class="control-label"></label>
                 <input asp-for="StreetAddress2" class="form-control" />
                 <span asp-validation-for="StreetAddress2" class="text-danger"></span>
             </div>
+
+            <!-- Champ pour la ville (City) -->
             <div class="form-group">
                 <label asp-for="City" class="control-label"></label>
                 <input asp-for="City" class="form-control" />
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
+
+            <!-- Champ pour l'État (StateId) -->
             <div class="form-group">
                 <label asp-for="StateId" class="control-label"></label>
-                <select asp-for="StateId" class ="form-control" asp-items="ViewBag.StateId"></select>
+                <select asp-for="StateId" class="form-control" asp-items="ViewBag.StateId"></select>
             </div>
+
+            <!-- Champ pour le code postal (Zip) -->
             <div class="form-group">
                 <label asp-for="Zip" class="control-label"></label>
                 <input asp-for="Zip" class="form-control" />
                 <span asp-validation-for="Zip" class="text-danger"></span>
             </div>
+
+            <!-- Champ pour l'identifiant de l'utilisateur (UserId) -->
             <div class="form-group">
                 <label asp-for="UserId" class="control-label"></label>
                 <input asp-for="UserId" class="form-control" />
                 <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
+
+            <!-- Bouton de soumission du formulaire -->
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -78,6 +104,7 @@
     </div>
 </div>
 
+<!-- Lien de retour vers la liste -->
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
@@ -85,3 +112,184 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
+/*
+Cette vue "Create" est utilisée pour créer un nouveau contact. Elle affiche un formulaire avec des champs pour entrer les informations du contact, tels que le prénom, le nom de famille, l'adresse e-mail, etc. Chaque champ est associé à un modèle de données Contact et inclut des balises de validation pour afficher d'éventuelles erreurs de validation.
+
+Le formulaire inclut également un bouton "Create" pour soumettre le formulaire et créer le contact, ainsi qu'un lien "Back to List" pour revenir à la liste des contacts.
+
+La section "Scripts" rend les scripts de validation nécessaires pour la validation côté client.
+*/
+
+/*
+voici une explication détaillée du mécanisme d'injection de dépendances
+et du fonctionnement de l'architecture MVC (Modèle-Vue-Contrôleur)
+dans le code de l'application ASP.NET Core :
+
+
+using ContactWebEFCore1.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+
+namespace ContactWebEFCore1.Controllers
+{
+    public class HomeController : Controller
+    {
+        private readonly ILogger<HomeController>
+    _logger;
+
+    public HomeController(ILogger<HomeController>
+    logger)
+    {
+    _logger = logger;
+    }
+
+    // Action "Index" qui renvoie la vue par défaut
+    public IActionResult Index()
+    {
+    return View();
+    }
+
+    // Action "Privacy" qui renvoie la vue de confidentialité
+    public IActionResult Privacy()
+    {
+    return View();
+    }
+
+    // Action "Error" qui renvoie la vue d'erreur en cas de problème
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+    }
+    }
+
+
+
+    Explication :
+
+    HomeController est un contrôleur qui gère les actions pour afficher les vues.
+
+    Dans le constructeur HomeController, l'injection de dépendances est utilisée pour injecter une instance de ILogger<HomeController>
+        . Cette dépendance est automatiquement résolue par le système d'injection de dépendances d'ASP.NET Core, ce qui signifie que vous n'avez pas à vous soucier de créer manuellement l'objet ILogger. Il sera injecté automatiquement lorsque le contrôleur sera instancié.
+
+        L'action Index() renvoie la vue par défaut "Index". Les actions dans les contrôleurs correspondent généralement aux vues que vous souhaitez afficher. Dans ce cas, lorsque vous accédez à la page d'accueil de l'application, cette action renvoie la vue correspondante.
+
+        L'action Privacy() renvoie la vue de confidentialité. De même, cette action renvoie la vue appropriée lorsque vous accédez à la page de confidentialité.
+
+        L'action Error() est utilisée pour afficher une vue d'erreur en cas de problème. Elle peut être déclenchée en cas d'erreur dans l'application. Elle renvoie également une vue spécifique pour afficher des informations sur l'erreur.
+
+        L'architecture MVC divise l'application en trois parties principales :
+
+        Modèle : Représente les données de l'application et sa logique métier. Dans ce code, le modèle n'est pas spécifiquement présent, mais il serait généralement implémenté dans d'autres parties de l'application.
+
+        Vue : Représente l'interface utilisateur et affiche les données au client. Les vues sont généralement stockées dans le dossier "Views" de l'application.
+
+        Contrôleur : Gère les demandes HTTP, interagit avec le modèle pour obtenir les données nécessaires, puis sélectionne la vue appropriée pour afficher ces données. Les actions dans le contrôleur sont responsables de la gestion des requêtes et de la sélection des vues.
+
+        L'injection de dépendances est une technique qui permet de gérer les dépendances d'une classe de manière propre et modulaire, ce qui facilite les tests unitaires et la maintenance de l'application. Dans ce cas, l'injection de dépendances est utilisée pour injecter l'objet ILogger<HomeController>
+    dans le contrôleur HomeController, ce qui permet d'accéder aux fonctionnalités de journalisation.
+
+    En résumé, ce code illustre comment les contrôleurs, les vues et l'injection de dépendances fonctionnent ensemble dans une application ASP.NET Core basée sur l'architecture MVC pour gérer les requêtes HTTP et afficher des vues.
+
+
+    using ContactWebEFCore1.Models;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Diagnostics;
+
+    namespace ContactWebEFCore1.Controllers
+    {
+    public class HomeController : Controller
+    {
+    private readonly ILogger<HomeController>
+        _logger;
+
+        public HomeController(ILogger<HomeController>
+    logger)
+    {
+    _logger = logger;
+    }
+
+    // Action "Index" qui renvoie la vue par défaut
+    public IActionResult Index()
+    {
+    return View();
+    }
+
+    // Action "Privacy" qui renvoie la vue de confidentialité
+    public IActionResult Privacy()
+    {
+    return View();
+    }
+
+    // Action "Error" qui renvoie la vue d'erreur en cas de problème
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+    }
+    }
+
+
+
+
+
+    Explication avec syntaxe Razor :
+
+    HomeController est un contrôleur qui gère les actions pour afficher les vues.
+
+    Dans le constructeur HomeController, l'injection de dépendances est utilisée pour injecter une instance de ILogger<HomeController>
+        . Cette dépendance est automatiquement résolue par le système d'injection de dépendances d'ASP.NET Core, ce qui signifie que vous n'avez pas à vous soucier de créer manuellement l'objet ILogger. Il sera injecté automatiquement lorsque le contrôleur sera instancié.
+
+        L'action Index() renvoie la vue par défaut "Index". Les actions dans les contrôleurs correspondent généralement aux vues que vous souhaitez afficher. Dans ce cas, lorsque vous accédez à la page d'accueil de l'application, cette action renvoie la vue correspondante.
+
+        L'action Privacy() renvoie la vue de confidentialité. De même, cette action renvoie la vue appropriée lorsque vous accédez à la page de confidentialité.
+
+        L'action Error() est utilisée pour afficher une vue d'erreur en cas de problème. Elle peut être déclenchée en cas d'erreur dans l'application. Elle renvoie également une vue spécifique pour afficher des informations sur l'erreur.
+
+        L'architecture MVC divise l'application en trois parties principales :
+
+        Modèle : Représente les données de l'application et sa logique métier. Dans ce code, le modèle n'est pas spécifiquement présent, mais il serait généralement implémenté dans d'autres parties de l'application.
+
+        Vue : Représente l'interface utilisateur et affiche les données au client. Les vues sont généralement stockées dans le dossier "Views" de l'application.
+
+        Contrôleur : Gère les demandes HTTP, interagit avec le modèle pour obtenir les données nécessaires, puis sélectionne la vue appropriée pour afficher ces données. Les actions dans le contrôleur sont responsables de la gestion des requêtes et de la sélection des vues.
+
+        La syntaxe Razor est utilisée dans les fichiers de vue (fichiers .cshtml) pour combiner du code C# avec du HTML et générer du contenu dynamique. Voici un exemple d'une vue correspondante à l'action Index() :
+
+        
+       // Copy code
+        //@model ContactWebEFCore1.Models.ErrorViewModel
+
+       // @{
+         //   ViewData["Title"] = "Error";
+        //}
+
+       // <h1 class="text-danger">An error occurred.</h1>
+       // <h2 class="text-danger">Error code: @Model.RequestId</h2>
+
+        //<p class="text-danger">
+        //    This is the error message.
+       // </p>
+
+      //  <h3 class="text-danger">Stack Trace:</h3>
+//<pre>
+ //   @if (!string.IsNullOrEmpty(Model.RequestId))
+ //  {
+        <a asp-action="Index" asp-controller="Home">Back to Home</a>
+   // }
+//</pre>
+     //   Explication de la syntaxe Razor :
+
+       // @model ContactWebEFCore1.Models.ErrorViewModel définit le modèle de la vue, qui est utilisé pour accéder aux données dans la vue.
+
+     //   @{} est utilisé pour encadrer le code C# dans la vue. Vous pouvez y placer du code C# pour effectuer des opérations ou des vérifications.
+
+    //    @if (!string.IsNullOrEmpty(Model.RequestId)) est une instruction conditionnelle qui vérifie si la propriété RequestId du modèle n'est pas vide. Si c'est le cas, elle affiche un lien vers la page d'accueil.
+
+//En résumé, ce code illustre comment les contrôleurs, les vues et l'injection de dépendances fonctionnent ensemble dans une application ASP.NET Core basée sur l'architecture MVC, en utilisant la syntaxe Razor pour générer du contenu dynamique dans les vues.
+
+
